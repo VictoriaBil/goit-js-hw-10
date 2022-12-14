@@ -11,14 +11,6 @@ const countryInfo = document.querySelector('.country-info');
 
 searchField.addEventListener('input', debounce(onSearch, DEBOUNCE_DELAY));
 
-// function fetchCountry(name) {
-//   return fetch(
-//     `https://restcountries.com/v3.1/name/${name}?fields=name,capital,population,flags,languages`
-//   ).then(response => {
-//     return response.json();
-//   });
-// }
-
 function onSearch(event) {
   event.preventDefault();
   const input = event.target;
@@ -49,7 +41,11 @@ function onSearch(event) {
         return;
       }
     })
-    .catch(error => Notify.failure('Oops, there is no country with that name'));
+    .catch(error => {
+      Notify.failure('Oops, there is no country with that name');
+      cleanCountryList();
+      cleanCountryInfo();
+    });
 }
 
 function createCountryList(data) {
