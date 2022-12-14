@@ -11,9 +11,17 @@ const countryInfo = document.querySelector('.country-info');
 
 searchField.addEventListener('input', debounce(onSearch, DEBOUNCE_DELAY));
 
+// function fetchCountry(name) {
+//   return fetch(
+//     `https://restcountries.com/v3.1/name/${name}?fields=name,capital,population,flags,languages`
+//   ).then(response => {
+//     return response.json();
+//   });
+// }
+
 function onSearch(event) {
   event.preventDefault();
-  const input = event.currentTarget;
+  const input = event.target;
   const searchQuery = input.value.trim();
 
   fetchCountry(searchQuery)
